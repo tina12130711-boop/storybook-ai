@@ -1,1 +1,47 @@
-<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><title>開始創作</title><link rel="stylesheet" href="style.css"></head><body><h1 id="story-title"></h1><div class="question-box"><div id="question">問題會顯示在這裡</div><input id="answer" placeholder="在這裡回答" /><button onclick="nextQuestion()">下一題</button></div><script src="script.js"></script></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>開始創作 - 繪本製造機</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="story-container">
+    <aside class="cover-box">
+      <img id="cover-img" src="assets/images/eco-hero-cover.svg" alt="封面">
+    </aside>
+
+    <section class="qa-box">
+      <h2 id="story-title">繪本示例</h2>
+      <div id="intro" class="intro">
+        <p>歡迎來到繪本製造機！請選擇主題並開始回答 10 題簡單的問題。</p>
+        <button id="btn-start" class="btn">開始創作</button>
+      </div>
+
+      <div id="question-area" class="question-area hidden">
+        <div class="left-thumb">
+          <img id="thumb" src="assets/images/eco-hero-page.svg" alt="局部圖">
+        </div>
+        <div class="qa">
+          <div id="q-number" class="q-number">第 1 題</div>
+          <div id="q-text" class="q-text">問題會出現在這</div>
+          <textarea id="q-input" placeholder="在這裡輸入答案" rows="4"></textarea>
+          <div class="controls">
+            <button id="prev-btn" class="btn ghost">上題</button>
+            <button id="next-btn" class="btn">下一題</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="waiting" class="waiting hidden">
+        <div class="loader"></div>
+        <p>正在製作你的專屬繪本，請稍候⋯⋯</p>
+      </div>
+
+    </section>
+  </main>
+
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><title>繪本製造機</title><link rel="stylesheet" href="style.css"></head><body><h1>繪本製造機</h1><p class="subtitle">選一個故事開始創作吧！</p><div class="card-container"><a class="card" href="story.html?topic=環保小勇士">環保小勇士</a><a class="card" href="story.html?topic=未來不是夢">未來不是夢</a><a class="card" href="story.html?topic=歹丸走透透">歹丸走透透</a><a class="card" href="story.html?topic=你好，2050！">你好，2050！</a></div></body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>繪本製造機</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="hero">
+    <h1>繪本製造機</h1>
+    <p class="lead">回答問題，和 AI（假資料版）一起做出專屬的環保繪本 — 兒童繪本風</p>
+    <a class="btn" href="story.html">開始創造吧</a>
+  </header>
+
+  <main class="container">
+    <section class="grid" aria-label="故事選單">
+      <article class="card" data-key="eco-hero">
+        <img src="assets/images/eco-hero-thumb.svg" alt="環保小勇士">
+        <h3>環保小勇士</h3>
+        <p>守護海洋、愛護地球</p>
+      </article>
+      <article class="card" data-key="future-2050">
+        <img src="assets/images/future-2050-thumb.svg" alt="你好2050">
+        <h3>你好，2050！</h3>
+        <p>想像未來的生活</p>
+      </article>
+      <article class="card" data-key="local-trip">
+        <img src="assets/images/local-trip-thumb.svg" alt="歹丸走透透">
+        <h3>歹丸走透透</h3>
+        <p>探索家鄉的故事</p>
+      </article>
+      <article class="card" data-key="career-dream">
+        <img src="assets/images/career-dream-thumb.svg" alt="未來不是夢">
+        <h3>未來不是夢</h3>
+        <p>夢想職業的小英雄</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">作業展示版 • 兒童繪本風範例</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('click', () => {
+      const key = c.dataset.key;
+      window.location.href = 'story.html?story=' + encodeURIComponent(key);
+    });
+  });
+});
+</script>
+</body>
+</html>
