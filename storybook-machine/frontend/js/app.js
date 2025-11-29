@@ -1,3 +1,0 @@
-// config
-const API_BASE = "https://your-api.example.com";
-const FAKE_MODE = true;...
