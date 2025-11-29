@@ -7,10 +7,11 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 dotenv.config();
 const app = express();
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
+// 生成故事
 app.post("/api/story", async (req, res) => {
   try {
     const { answers, theme } = req.body;
@@ -27,25 +28,33 @@ app.post("/api/story", async (req, res) => {
     const result = await model.generateContent(prompt);
     res.json({ story: result.response.text() });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: "故事生成失敗" });
   }
 });
 
+// 生成插圖（Google Image 2）
 app.post("/api/image", async (req, res) => {
   try {
     const { sentence } = req.body;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+    const model = genAI.getGenerativeModel({ model: "image-001" });
 
-    const img = await model.generateContent({
-      prompt: `兒童繪本柔和水彩風格：${sentence}`,
-      size: "512x512",
+    const result = await model.generateImage({
+      prompt: `兒童繪本風格、柔和水彩插圖：${sentence}`,
+      size: "512x512"
     });
 
-    res.json({ image: img.response.candidates[0].content.parts[0].inlineData.data });
+    const imageBase64 =
+      result.images?.[0]?.base64Data || null;
+
+    res.json({ image: imageBase64 });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: "插圖生成失敗" });
   }
 });
 
-app.listen(3000, () => console.log("Backend running"));
+// Render 要求一定要用 PORT
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
